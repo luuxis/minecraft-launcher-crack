@@ -1,0 +1,83 @@
+{
+  "name": "Minecraft-Launcher",
+  "version": "2.0.4",
+  "productName": "Minecraft Launcher",
+  "description": "Minecraft Launcher",
+  "main": "app/index.html",
+  "author": "Luuxis",
+  "window": {
+    "title": "Minecraft launcher",
+    "width": 1185,
+    "height": 600,
+    "min_width": 1000,
+    "min_height": 600,
+    "frame": true,
+    "position": "center",
+    "icon": "app/assets/images/icons/icon.png"
+  },
+  "chromium-args": "--enable-logging --v=1 --disable-gpu --mixed-content",
+  "webkit": {
+    "plugin": true
+  },
+  "scripts": {
+    "start": "run --64 --mirror https://dl.nwjs.io/ .",
+    "build:win": "npm install && build --win --x64 --mirror https://dl.nwjs.io/ .",
+    "build:mac": "npm install && build --mac --x64 --mirror https://dl.nwjs.io/ .",
+    "build:linux": "npm install && build --linux --x64 --mirror https://dl.nwjs.io/ .",
+    "build:all": "npm run build:linux && npm run build:mac && npm run build:win",
+    "dev": "nodemon --exec npm start"
+  },
+  "license": "CC0",
+  "build": {
+    "appId": "Minecraft Launcher",
+    "nwVersion": "0.55.0",
+    "packed": true,
+    "targets": [
+      "zip",
+      "nsis7z"
+    ],
+    "strippedProperties": [
+      "build"
+    ],
+    "excludes": [
+      ".gitignore",
+      "tool.bat",
+      "web/**",
+      "AppData/**",
+      "node-v*/**",
+      "test/**",
+      "package-lock.json",
+      "README.md"
+    ],
+    "outputPattern": "${NAME}-${PLATFORM}",
+    "win": {
+      "productName": "Minecraft Launcher",
+      "companyName": "Minecraft Launcher",
+      "copyright": "copyright",
+      "icon": "./app/assets/images/icons/icon.ico"
+    },
+    "mac": {
+      "displayName": "Minecraft-Launcher",
+      "copyright": "copyright",
+      "plistStrings": {
+        "CFBundleIdentifier": "Minecraft-Launcher"
+      }
+    },
+    "nsis": {
+      "installDirectory": "$LOCALAPPDATA\\Programs\\${_COMPANYNAME}",
+      "diffUpdaters": false
+    }
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "nwjs-builder-luuxis": "^1.15.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luuxis/minecraft-Launcher.git"
+  },
+  "dependencies": {
+    "minecraft-java-core": "^1.1.5-alpha.4",
+    "msmc": "^3.0.2"
+  }
+}
